@@ -24,9 +24,10 @@ wpcost.json
 diff_viewer.py
 achievements.py
 
-# Nation-specific JSON files
-/nations/
-/locales/
+nations/
+locales/
 
 # Images
 *.png
+
+.env

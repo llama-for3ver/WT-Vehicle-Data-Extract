@@ -1,7 +1,9 @@
 from peewee import PostgresqlDatabase, TextField, IntegerField, FloatField, BooleanField, Model, CompositeKey, DecimalField, DoubleField
 from playhouse.sqlite_ext import JSONField
-
-db = PostgresqlDatabase('postgres', user='postgres', host='home.rooik.at', port=5432, password='iamvalid0000')
+from dotenv import load_dotenv
+from os import environ as env
+load_dotenv()
+db = PostgresqlDatabase(env.get('DB_DATABASE'), user=env.get('DB_USER'), host=env.get('DB_HOST'), port=env.get('DB_PORT'), password=env.get('DB_PASSWORD'))
 
 class BaseModel(Model):
     class Meta:
