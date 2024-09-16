@@ -6,6 +6,7 @@ from utils.constants import *
 from utils.update_localization import generate_locales
 from utils.updater import update_dataset, update_images
 from dotenv import load_dotenv
+import time
 
 load_dotenv("/utils/.env")
 
@@ -56,9 +57,11 @@ def main(verbose: bool = False, use_multiprocessing: bool = True):
 
 
 if __name__ == '__main__':
+    start_time = time.time()
     update_dataset()
     # TODO: Fix localization for weaponry when using multiprocessing
     main(verbose=True, use_multiprocessing=False)
     update_db()
     update_images()
     generate_locales("./locales")
+    print(f"Finished in {round(time.time() - start_time, 1)} seconds")
