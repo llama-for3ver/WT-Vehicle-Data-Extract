@@ -11,7 +11,7 @@ consoleHdlr = logging.StreamHandler()
 consoleHdlr.setLevel(logging.INFO)
 
 errorHdlr = logging.FileHandler('errors.log')
-errorHdlr.setLevel(logging.ERROR)
+errorHdlr.setLevel(logging.INFO)
 
 cLogger.addHandler(errorHdlr)
 cLogger.addHandler(consoleHdlr)

@@ -38,8 +38,8 @@ JSON files will be created in the `nations` folder, images copied to the assets 
 ## TODO
 
 - [ ] Document the code.
-- [ ] Use Docker 
-- [ ] Add automatic updating 
+- [ ] Use Docker.
+- [ ] Add automatic updating.
 
 ## How to contribute
 
