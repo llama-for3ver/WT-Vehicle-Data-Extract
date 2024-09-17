@@ -1,4 +1,4 @@
-# WT-Vehicle-Data-Extract
+# WT Vehicle Data Extract
 
 ## Introduction
 
@@ -10,9 +10,10 @@ This is a repo containing all the scripts used to parse data from War Thunder an
 
 ## How to use
 
-1. Clone the repo
-2. Clone this other repo: [War Thunder Datamine](https://github.com/gszabi99/War-Thunder-Datamine).
-3. Specify in an `.env` file (placed inside the utils folder) the path to the datamine repo. Place the file in the directory called "utils". The `.env`
+1. Clone this repo `git clone https://github.com/llama-for3ver/WT-Vehicle-Data-Extract.git`
+2. Clone [War Thunder Datamine](https://github.com/gszabi99/War-Thunder-Datamine) `git clone https://github.com/gszabi99/War-Thunder-Datamine.git`
+   > [!warning] This repo is very large, and it will take a while to clone.
+3. Specify in `.env` (placed inside the utils folder) the path to the datamine repo. Place the file in the directory called "utils". The `.env`
 
    ```
    DATAMINE_LOCATION="path/to/datamine/repo"
@@ -27,12 +28,12 @@ This is a repo containing all the scripts used to parse data from War Thunder an
    ```
 5. Run `main.py` in the root directory of this repo.
 
-The full execution of the script will result in a `vehicle` and `vehicleold` being created/updated in the Postgres database., JSON raw data files in each nation folder,
-images in the assets folder and JSON localisation files in the locales folder.
+The full execution of the script will result in a `vehicle` and `vehicleold` being created/updated in the Postgres database
+JSON files will be created in the `nations` folder, images copied to the assets folder and JSON localisation files in locales.
 
 <!-- Warning: if the generated database file already exists, versioning feature will automatically be enabled. This means that all the vehicles that have been modified since the last major update will be moved into another table called "vehicles_old" and the new vehicles will be added to the main table. -->
 > [!warning]
->If there is already data in the database, versioning will be enabled. This means that all the vehicles that have been modified since the last major update will be moved into another table called "vehicles_old" and the new vehicles will be added to the main table.
+> If there is already data in the database, versioning will be enabled. This means that all the vehicles that have been modified since the last major update will be moved into another table called "vehicles_old" and the new vehicles will be added to the main table.
 
 ## TODO
 
