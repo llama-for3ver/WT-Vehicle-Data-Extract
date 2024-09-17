@@ -13,22 +13,32 @@ This is a repo containing all the scripts used to parse data from War Thunder an
 1. Clone the repo
 2. Clone this other repo: [War Thunder Datamine](https://github.com/gszabi99/War-Thunder-Datamine).
 3. Specify in an `.env` file (placed inside the utils folder) the path to the datamine repo. Place the file in the directory called "utils". The `.env`
-   file should look like this:
 
    ```
    DATAMINE_LOCATION="path/to/datamine/repo"
    ```
-   
-4. Run `python main.py` in the root directory of this repo.
+4. Also add details for the Postgres database in the `.env` file (placed in root):
+   ```
+   DB_DATABASE=postgres
+   DB_USER=postgres
+   DB_PASSWORD=postgres
+   DB_HOST=localhost
+   DB_PORT=5432
+   ```
+5. Run `main.py` in the root directory of this repo.
 
-The full execution of the script will result in a database file being created in the root directory of this repo, JSON raw data files in each nation folder,
+The full execution of the script will result in a `vehicle` and `vehicleold` being created/updated in the Postgres database., JSON raw data files in each nation folder,
 images in the assets folder and JSON localisation files in the locales folder.
 
-Warning: if the generated database file already exists, versioning featur will automatically be enabled. This means that all the vehicles that have been modified since the last major update will be moved into another table called "vehicles_old" and the new vehicles will be added to the main table.
+<!-- Warning: if the generated database file already exists, versioning feature will automatically be enabled. This means that all the vehicles that have been modified since the last major update will be moved into another table called "vehicles_old" and the new vehicles will be added to the main table. -->
+> [!warning]
+>If there is already data in the database, versioning will be enabled. This means that all the vehicles that have been modified since the last major update will be moved into another table called "vehicles_old" and the new vehicles will be added to the main table.
 
 ## TODO
 
 - [ ] Document the code.
+- [ ] Use Docker 
+- [ ] Add automatic updating 
 
 ## How to contribute
 
