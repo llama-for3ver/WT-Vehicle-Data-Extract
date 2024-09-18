@@ -1,5 +1,5 @@
 from multiprocessing import Process
-from os import path
+from os import environ, path
 from db.inserter import update_db
 from utils import *
 from utils.constants import *
@@ -62,6 +62,7 @@ if __name__ == '__main__':
     # TODO: Fix localization for weaponry when using multiprocessing
     main(verbose=True, use_multiprocessing=False)
     update_db()
-    update_images()
-    generate_locales("./locales")
+    if environ.get("CI") is None:
+        update_images()
+        generate_locales("./locales")
     print(f"Finished in {round(time.time() - start_time, 1)} seconds")

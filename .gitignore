@@ -31,3 +31,5 @@ locales/
 *.png
 
 .env
+
+.DS_Store
