@@ -1,9 +1,12 @@
-from peewee import PostgresqlDatabase, TextField, IntegerField, BooleanField, Model, CompositeKey, DecimalField, DoubleField
+from peewee import PostgresqlDatabase, TextField, IntegerField, FloatField, BooleanField, Model, CompositeKey, DecimalField, DoubleField
 from playhouse.sqlite_ext import JSONField
-from dotenv import dotenv_values
+from dotenv import load_dotenv
+
+from os import environ as env
+
+load_dotenv()
 
 
-env = dotenv_values('.env')
 db = PostgresqlDatabase(env.get('DB_DATABASE'), user=env.get('DB_USER'), host=env.get('DB_HOST'), port=env.get('DB_PORT'), password=env.get('DB_PASSWORD'))
 
 class BaseModel(Model):
