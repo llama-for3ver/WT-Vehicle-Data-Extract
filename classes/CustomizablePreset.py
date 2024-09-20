@@ -18,5 +18,5 @@ class CustomizablePreset:
             "max_load_left_wing": self.max_load_left_wing,
             "max_load_right_wing": self.max_load_right_wing,
             "max_disbalance": self.max_disbalance,
-            "pylons": [pylon.toJson() for pylon in self.pylons]
+            "pylons": [pylon.toJson() for pylon in self.pylons],
         }

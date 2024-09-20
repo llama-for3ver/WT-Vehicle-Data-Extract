@@ -6,7 +6,13 @@ from tqdm import tqdm
 from dotenv import load_dotenv
 from utils import cLogger
 from utils.simple_functions import value_from_dict
-from utils.constants import MODIFICATIONS, COUNTRIES, AIR_CLASSES, GROUND_CLASSES, SEA_CLASSES
+from utils.constants import (
+    MODIFICATIONS,
+    COUNTRIES,
+    AIR_CLASSES,
+    GROUND_CLASSES,
+    SEA_CLASSES,
+)
 
 load_dotenv()
 
@@ -21,7 +27,11 @@ def update_dataset():
     Returns:
         None
     """
-    with open(os.getenv("DATAMINE_LOCATION") + "/char.vromfs.bin_u/config/wpcost.blkx", "r", encoding="UTF-8") as f:
+    with open(
+        os.getenv("DATAMINE_LOCATION") + "/char.vromfs.bin_u/config/wpcost.blkx",
+        "r",
+        encoding="UTF-8",
+    ) as f:
         wpcost = json.load(f)
 
     del wpcost["economicRankMax"]
@@ -35,20 +45,28 @@ def update_dataset():
         if not os.path.exists(country_dir):
             os.makedirs(country_dir)
 
-        air_path = os.path.abspath(
-            "./nations/" + n + "/country_" + n + "_air.json")
+        air_path = os.path.abspath("./nations/" + n + "/country_" + n + "_air.json")
         ground_path = os.path.abspath(
-            "./nations/" + n + "/country_" + n + "_ground.json")
-        sea_path = os.path.abspath(
-            "./nations/" + n + "/country_" + n + "_sea.json")
+            "./nations/" + n + "/country_" + n + "_ground.json"
+        )
+        sea_path = os.path.abspath("./nations/" + n + "/country_" + n + "_sea.json")
 
         for i in wpcost:
 
-            if wpcost[i]["unitClass"] in AIR_CLASSES and wpcost[i]["country"] == "country_" + n:
+            if (
+                wpcost[i]["unitClass"] in AIR_CLASSES
+                and wpcost[i]["country"] == "country_" + n
+            ):
                 air_list.append(i)
-            elif wpcost[i]["unitClass"] in GROUND_CLASSES and wpcost[i]["country"] == "country_" + n:
+            elif (
+                wpcost[i]["unitClass"] in GROUND_CLASSES
+                and wpcost[i]["country"] == "country_" + n
+            ):
                 ground_list.append(i)
-            elif wpcost[i]["unitClass"] in SEA_CLASSES and wpcost[i]["country"] == "country_" + n:
+            elif (
+                wpcost[i]["unitClass"] in SEA_CLASSES
+                and wpcost[i]["country"] == "country_" + n
+            ):
                 sea_list.append(i)
 
         if len(air_list) != 0:
@@ -87,7 +105,7 @@ def update_images() -> None:
         "/tex.vromfs.bin_u/tanks": "./assets/images/",
         "/tex.vromfs.bin_u/ships": "./assets/images/",
         "/tex.vromfs.bin_u/aircrafts": "./assets/images/",
-        "/atlases.vromfs.bin_u/gameuiskin": "./assets/modifications/"
+        "/atlases.vromfs.bin_u/gameuiskin": "./assets/modifications/",
     }
 
     for source_dir, dest_dir in directories.items():
@@ -96,7 +114,9 @@ def update_images() -> None:
         files = os.listdir(path)
         os.makedirs(dest_dir, exist_ok=True)
         for file in tqdm(files):
-            if source_dir == "/atlases.vromfs.bin_u/gameuiskin" and not valid_mod_icon(file.replace(".png", "")):
+            if source_dir == "/atlases.vromfs.bin_u/gameuiskin" and not valid_mod_icon(
+                file.replace(".png", "")
+            ):
                 continue
             source = os.path.join(path, file)
             destination = os.path.join(os.path.abspath(dest_dir), file)

@@ -12,5 +12,5 @@ class Preset:
     def toJson(self):
         return {
             "name": self.name,
-            "weapons": [weapon.toJson() for weapon in self.weapons]
+            "weapons": [weapon.toJson() for weapon in self.weapons],
         }

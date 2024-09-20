@@ -1,4 +1,11 @@
-from classes import Engine, NightVisionDevice, Weapon, Preset, Modification, Aerodynamics
+from classes import (
+    Engine,
+    NightVisionDevice,
+    Weapon,
+    Preset,
+    Modification,
+    Aerodynamics,
+)
 from classes.BallisticComputer import BallisticComputer
 from classes.CustomizablePreset import CustomizablePreset
 
@@ -26,7 +33,7 @@ class Vehicle:
         self.squadron_vehicle: bool = False
         self.ge_cost: int = 0
         self.crew_total_count: int = 0
-        self.visibility: int  = 0
+        self.visibility: int = 0
         self.hull_armor: list[int] = []
         self.turret_armor: list[int] = []
         self.mass: int = 0.0
@@ -35,7 +42,7 @@ class Vehicle:
         self.train3_cost_gold: int = 0
         self.train3_cost_exp: int = 0
         self.sl_mul_arcade: float = 0.0
-        self.sl_mul_realistic: float = 0.0  
+        self.sl_mul_realistic: float = 0.0
         self.sl_mul_simulator: float
         self.exp_mul: float = 0.0
         self.repair_time_arcade: float = 0.0
@@ -117,13 +124,37 @@ class Vehicle:
             "repair_cost_full_upgraded_simulator": self.repair_cost_full_upgraded_simulator,
             "required_vehicle": self.required_vehicle,
             "engine": self.engine.toJson(),
-            "modifications": [] if self.modifications is None else [i.toJson() for i in self.modifications],
-            "ir_devices": self.ir_devices.toJson() if self.ir_devices is not None else {},
-            "thermal_devices": self.thermal_devices.toJson() if self.thermal_devices is not None else {},
-            "ballistic_computer": self.ballistic_computer.toJson() if self.ballistic_computer is not None else {},
-            "aerodynamics": self.aerodynamics.toJson() if self.aerodynamics is not None else {},
+            "modifications": (
+                []
+                if self.modifications is None
+                else [i.toJson() for i in self.modifications]
+            ),
+            "ir_devices": (
+                self.ir_devices.toJson() if self.ir_devices is not None else {}
+            ),
+            "thermal_devices": (
+                self.thermal_devices.toJson()
+                if self.thermal_devices is not None
+                else {}
+            ),
+            "ballistic_computer": (
+                self.ballistic_computer.toJson()
+                if self.ballistic_computer is not None
+                else {}
+            ),
+            "aerodynamics": (
+                self.aerodynamics.toJson() if self.aerodynamics is not None else {}
+            ),
             "has_customizable_weapons": self.has_customizable_weapons,
-            "weapons": [] if self.weapons is None else [i.toJson() for i in self.weapons],
-            "presets": [] if self.presets is None else [i.toJson() for i in self.presets],
-            "customizable_presets": [] if self.customizable_presets is None else self.customizable_presets.toJson()
+            "weapons": (
+                [] if self.weapons is None else [i.toJson() for i in self.weapons]
+            ),
+            "presets": (
+                [] if self.presets is None else [i.toJson() for i in self.presets]
+            ),
+            "customizable_presets": (
+                []
+                if self.customizable_presets is None
+                else self.customizable_presets.toJson()
+            ),
         }

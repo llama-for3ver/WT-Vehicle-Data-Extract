@@ -11,17 +11,25 @@ import time
 load_dotenv("/utils/.env")
 
 
-def get_vehicle_by_country(country, fetch_uri, file_in_path, vehicle_type="VEHICLE", verbose=False):
+def get_vehicle_by_country(
+    country, fetch_uri, file_in_path, vehicle_type="VEHICLE", verbose=False
+):
     all_vehicles = getJson(path.join(".", "nations", country, file_in_path))
 
     if all_vehicles is None:
-        if verbose: cLogger.warning(f'{vehicle_type.upper()} doesn\'t have a file called {file_in_path}')
+        if verbose:
+            cLogger.warning(
+                f"{vehicle_type.upper()} doesn't have a file called {file_in_path}"
+            )
         return
     out_file = path.join(".", "nations", country, f"{country}Final{vehicle_type}s.json")
 
     final_vehicles = []
     for index, vehicle in enumerate(all_vehicles):
-        if verbose: cLogger.info(f'{index:2} -> {country.upper()}  {vehicle_type.upper()}  {vehicle}')
+        if verbose:
+            cLogger.info(
+                f"{index:2} -> {country.upper()}  {vehicle_type.upper()}  {vehicle}"
+            )
         try:
             vehicle = create_vehicle(vehicle, fetch_uri)
             if vehicle is None:
@@ -29,17 +37,33 @@ def get_vehicle_by_country(country, fetch_uri, file_in_path, vehicle_type="VEHIC
             final_vehicles.append(vehicle)
         except Exception as e:
             e.with_traceback()
-            cLogger.error(f'Error creating {vehicle_type} {vehicle} -> {e.with_traceback()}')
+            cLogger.error(
+                f"Error creating {vehicle_type} {vehicle} -> {e.with_traceback()}"
+            )
             continue
 
-    with open(out_file, 'w') as f:
+    with open(out_file, "w") as f:
         json.dump([o.toJson() for o in final_vehicles], f, indent=2)
 
 
 def process_country(nation, verbose):
-    get_vehicle_by_country(nation, VEHICLE_FETCH_URI['ground'], f'country_{nation}_ground.json', 'Tank', verbose)
-    get_vehicle_by_country(nation, VEHICLE_FETCH_URI['sea'], f'country_{nation}_sea.json', 'Ship', verbose)
-    get_vehicle_by_country(nation, VEHICLE_FETCH_URI['air'], f'country_{nation}_air.json', 'Aircraft', verbose)
+    get_vehicle_by_country(
+        nation,
+        VEHICLE_FETCH_URI["ground"],
+        f"country_{nation}_ground.json",
+        "Tank",
+        verbose,
+    )
+    get_vehicle_by_country(
+        nation, VEHICLE_FETCH_URI["sea"], f"country_{nation}_sea.json", "Ship", verbose
+    )
+    get_vehicle_by_country(
+        nation,
+        VEHICLE_FETCH_URI["air"],
+        f"country_{nation}_air.json",
+        "Aircraft",
+        verbose,
+    )
 
 
 def main(verbose: bool = False, use_multiprocessing: bool = True):
@@ -56,13 +80,15 @@ def main(verbose: bool = False, use_multiprocessing: bool = True):
             process_country(nation, verbose)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     start_time = time.time()
     update_dataset()
     # TODO: Fix localization for weaponry when using multiprocessing
     main(verbose=True, use_multiprocessing=False)
     update_db()
     if environ.get("CI") is None:
-        update_images()
+        update_images()   
         generate_locales("./locales")
+    else:
+        cLogger.info("Skipping image and localization updates")
     print(f"Finished in {round(time.time() - start_time, 1)} seconds")
