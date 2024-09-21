@@ -1,5 +1,7 @@
 class Aerodynamics:
-    def __init__(self, ):
+    def __init__(
+        self,
+    ):
         self.length: float = 0.0
         self.wingspan: float = 0.0
         self.wing_area: float = 0.0
@@ -23,5 +25,5 @@ class Aerodynamics:
             "max_altitude": self.max_altitude,
             "turn_time": self.turn_time,
             "runway_length_required": self.runway_length_required,
-            "max_speed_at_altitude": self.max_speed_at_altitude
+            "max_speed_at_altitude": self.max_speed_at_altitude,
         }

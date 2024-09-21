@@ -14,5 +14,7 @@ class Pylon:
         return {
             "index": self.index,
             "used_for_disbalance": self.used_for_disbalance,
-            "selectable_weapons": [weapon.toJson() for weapon in self.selectable_weapons]
+            "selectable_weapons": [
+                weapon.toJson() for weapon in self.selectable_weapons
+            ],
         }

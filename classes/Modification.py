@@ -23,5 +23,5 @@ class Modification:
             "ge_cost": self.ge_cost,
             "required_modification": self.required_modification,
             "mod_class": self.mod_class,
-            "icon": self.icon
+            "icon": self.icon,
         }

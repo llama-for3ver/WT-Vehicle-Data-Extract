@@ -25,7 +25,7 @@ class Ammo:
             "speed": self.speed,
             "max_distance": self.max_distance,
             "explosive_type": self.explosive_type,
-            "explosive_mass": self.explosive_mass
+            "explosive_mass": self.explosive_mass,
         }
 
     def __eq__(self, other):
@@ -34,4 +34,10 @@ class Ammo:
         return False
 
     def __hash__(self):
-        return int(hashlib.sha256(json.dumps(self.toJson()).encode("utf-8")).hexdigest(), 16) % 10 ** 8
+        return (
+            int(
+                hashlib.sha256(json.dumps(self.toJson()).encode("utf-8")).hexdigest(),
+                16,
+            )
+            % 10**8
+        )

@@ -1,10 +1,30 @@
-from peewee import PostgresqlDatabase, TextField, IntegerField, BooleanField, Model, CompositeKey, DecimalField, DoubleField
+from peewee import (
+    PostgresqlDatabase,
+    TextField,
+    IntegerField,
+    FloatField,
+    BooleanField,
+    Model,
+    CompositeKey,
+    DecimalField,
+    DoubleField,
+)
 from playhouse.sqlite_ext import JSONField
-from dotenv import dotenv_values
+from dotenv import load_dotenv
+
+from os import environ as env
+
+load_dotenv()
 
 
-env = dotenv_values('.env')
-db = PostgresqlDatabase(env.get('DB_DATABASE'), user=env.get('DB_USER'), host=env.get('DB_HOST'), port=env.get('DB_PORT'), password=env.get('DB_PASSWORD'))
+db = PostgresqlDatabase(
+    env.get("DB_DATABASE"),
+    user=env.get("DB_USER"),
+    host=env.get("DB_HOST"),
+    port=env.get("DB_PORT"),
+    password=env.get("DB_PASSWORD"),
+)
+
 
 class BaseModel(Model):
     class Meta:
@@ -74,7 +94,7 @@ class Vehicle(BaseModel):
 
     class Meta:
         database = db
-        db_table = 'vehicle'
+        db_table = "vehicle"
 
 
 class VehicleOld(BaseModel):
@@ -140,8 +160,8 @@ class VehicleOld(BaseModel):
 
     class Meta:
         database = db
-        db_table = 'vehicleold'
-        primary_key = CompositeKey('identifier', 'version')
+        db_table = "vehicleold"
+        primary_key = CompositeKey("identifier", "version")
 
 
 db.create_tables([Vehicle, VehicleOld], safe=True)

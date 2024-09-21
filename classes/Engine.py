@@ -10,10 +10,12 @@ class Engine:
         self.max_reverse_speed_rb_sb: int = 0
 
     def __str__(self):
-        return (f"Engine: {self.horse_power_ab} HP (AB), {self.horse_power_rb_sb} HP (RB/SB), "
-                f"{self.max_rpm} RPM, {self.min_rpm} RPM, {self.max_speed_ab} km/h (AB), "
-                f"{self.max_reverse_speed_ab} km/h (AB), {self.max_speed_rb_sb} km/h (RB/SB), "
-                f"{self.max_reverse_speed_rb_sb} km/h (RB/SB)")
+        return (
+            f"Engine: {self.horse_power_ab} HP (AB), {self.horse_power_rb_sb} HP (RB/SB), "
+            f"{self.max_rpm} RPM, {self.min_rpm} RPM, {self.max_speed_ab} km/h (AB), "
+            f"{self.max_reverse_speed_ab} km/h (AB), {self.max_speed_rb_sb} km/h (RB/SB), "
+            f"{self.max_reverse_speed_rb_sb} km/h (RB/SB)"
+        )
 
     def toJson(self):
         return {
@@ -24,5 +26,5 @@ class Engine:
             "max_speed_ab": self.max_speed_ab,
             "max_reverse_speed_ab": self.max_reverse_speed_ab,
             "max_speed_rb_sb": self.max_speed_rb_sb,
-            "max_reverse_speed_rb_sb": self.max_reverse_speed_rb_sb
+            "max_reverse_speed_rb_sb": self.max_reverse_speed_rb_sb,
         }
