@@ -12,9 +12,8 @@ This is a repo containing all the scripts used to parse data from War Thunder an
 
 1. Clone this repo `git clone https://github.com/llama-for3ver/WT-Vehicle-Data-Extract.git`
 2. Clone [War Thunder Datamine](https://github.com/gszabi99/War-Thunder-Datamine) `git clone https://github.com/gszabi99/War-Thunder-Datamine.git`
-   > [!warning] This repo is very large, and it will take a while to clone.
-3. Specify in `.env` (placed inside the utils folder) the path to the datamine repo. Place the file in the directory called "utils". The `.env`
-
+   > [!warning] This repo is very large, and it will take a while to clone. You can use --depth=1 to download only the latest files, which greatly speeds up cloning and should be sufficient.
+3. Specify in `.env` (placed inside the utils folder) the path to the datamine repo:
    ```
    DATAMINE_LOCATION="path/to/datamine/repo"
    ```
@@ -39,7 +38,7 @@ JSON files will be created in the `nations` folder, images copied to the assets 
 
 - [ ] Document the code.
 - [ ] Use Docker.
-- [ ] Add automatic updating.
+- [x] Add automatic updating.
 
 ## How to contribute
 
