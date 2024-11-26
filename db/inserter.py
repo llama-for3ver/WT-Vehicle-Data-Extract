@@ -55,4 +55,4 @@ def update_db():
                         for vehicles in chunked(new_vehicles, 100):
                             Vehicle.insert_many(vehicles).execute()
             except FileNotFoundError:
-                pass
+                cLogger.warning(f'File not found: {country}/{country}Final{vehicle_category}.json')

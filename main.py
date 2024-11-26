@@ -86,7 +86,8 @@ if __name__ == "__main__":
     # TODO: Fix localization for weaponry when using multiprocessing
     main(verbose=True, use_multiprocessing=False)
     update_db()
-    if environ.get("CI") is None:
+    #if environ.get("CI") is None:
+    if True:
         update_images()   
         generate_locales("./locales")
     else:
