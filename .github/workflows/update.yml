@@ -40,13 +40,13 @@ jobs:
           DB_PORT: ${{ secrets.DB_PORT }}
 
       - name: Upload locales
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: locales
           path: ./locales
 
       - name: Upload nations
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: nations
           path: ./nations
