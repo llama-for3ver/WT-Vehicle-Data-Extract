@@ -45,4 +45,5 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git add -A -f
           git commit -m "update locales and nations"
+          git pull --rebase origin master
           git push
