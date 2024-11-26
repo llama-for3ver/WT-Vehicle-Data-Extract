@@ -39,15 +39,10 @@ jobs:
           DB_DATABASE: ${{ secrets.DB_DATABASE }}
           DB_PORT: ${{ secrets.DB_PORT }}
 
-      - name: Upload locales
-        uses: actions/upload-artifact@v4
-        with:
-          name: locales
-          path: ./locales
-
-      - name: Upload nations
-        uses: actions/upload-artifact@v4
-        with:
-          name: nations
-          path: ./nations
-
+      - name: Commit locales and nations
+        run: |
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"
+          git add -A -f
+          git commit -m "update locales and nations"
+          git push
