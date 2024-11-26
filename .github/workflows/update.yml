@@ -43,6 +43,7 @@ jobs:
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git config --global user.name "github-actions[bot]"
           git pull --rebase origin master
+          find . -type d -name "__pycache__" -exec rm -rf {} +
           git add locales nations assets -f
           git commit -m "Update files" || echo "No changes!"
           git push origin master
