@@ -38,13 +38,11 @@ jobs:
           DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
           DB_DATABASE: ${{ secrets.DB_DATABASE }}
           DB_PORT: ${{ secrets.DB_PORT }}
-      - name: Update files
+
+      - name: Commit locales and nations
         run: |
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git config --global user.name "github-actions[bot]"
-          git pull --rebase origin master
-          find . -type d -name "__pycache__" -exec rm -rf {} +
-          git add locales nations assets -f
-          git commit -m "Update files" || echo "No changes!"
-          git push origin master
-      
+          git add -A -f
+          git commit -m "update locales and nations"
+          git push
