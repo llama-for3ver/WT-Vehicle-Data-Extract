@@ -141,6 +141,7 @@ BATTLE_RATINGS = [
     13.0,
     13.3,
     13.7,
+    14.0,
 ]
 
 GROUND_TYPES: set[str] = {
