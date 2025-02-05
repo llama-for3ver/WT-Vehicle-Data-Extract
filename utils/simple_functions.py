@@ -1,5 +1,7 @@
 import json
 import os
+import requests
+from custom_logging import cLogger
 
 
 def myFetch(path, isLocal=False):
@@ -36,8 +38,18 @@ def getJson(path):
 
 
 def getVersion():
-    with open(os.getenv("DATAMINE_LOCATION") + "/aces.vromfs.bin_u/version", "r") as f:
-        return f.read()
+    version_file_path = os.getenv("DATAMINE_LOCATION") + "/aces.vromfs.bin_u/version"
+    if os.path.exists(version_file_path):
+        with open(version_file_path, "r") as f:
+            return f.read()
+    else:
+        cLogger.warning("version file not found, fetching from github.")
+        response = requests.get("https://raw.githubusercontent.com/gszabi99/War-Thunder-Live-Version/refs/heads/master/version")
+        if response.status_code == 200:
+            return response.text
+        else:
+            cLogger.error("version could not be found")
+            return None
 
 
 def value_from_dict(dictionary: dict, key: str, fall_back_value: any = None):

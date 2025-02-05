@@ -12,3 +12,4 @@ six
 tqdm
 tzdata
 psycopg2
+requests
