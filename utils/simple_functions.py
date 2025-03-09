@@ -38,7 +38,7 @@ def getJson(path):
 
 
 def getVersion():
-    version_file_path = os.getenv("DATAMINE_LOCATION") + "/aces.vromfs.bin_u/version"
+    version_file_path = os.getenv("DATAMINE_LOCATION") + "/version"
     if os.path.exists(version_file_path):
         with open(version_file_path, "r") as f:
             return f.read()
